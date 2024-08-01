@@ -1,36 +1,32 @@
 function newItem() {
-  //javascript
-  //1. Adding a new item to the list of items:
-  let li = $("<li></>li>");
+  // Adding a new item to the list of items
+  let li = $("<li></li>");
   let inputValue = $("#input").val();
-  li.appendChild(inputValue);
+  li.text(inputValue);
 
   if (inputValue === "") {
-    alert("Opps! You have to write something first!");
+    alert("Oops! You have to write something first!");
   } else {
     $("#list").append(li);
   }
 
-  //2. Crossing out an item from the list of items:
-  function crossOut() {
-    li.toggleClass("strike");
-  }
-
-  li.on("dblclick", function crossOut() {
+  // Crossing out an item from the list of items
+  li.on("dblclick", function () {
     li.toggleClass("strike");
   });
 
-  //3(i). Adding the delete button "X":
-  let crossOutButton = $("<crossOutButton></crossOutButton>");
-  crossOutButton.append(document.createTextNode("X"));
+  // Adding the delete button "X"
+  let crossOutButton = $("<button></button>");
+  crossOutButton.text("X");
+  crossOutButton.addClass("crossOutButton");
   li.append(crossOutButton);
 
-  crossOutButton.on("click", deleteListItem);
-  //3(ii). Adding CLASS DELETE (DISPLAY: NONE) from the css:
-  function deleteListItem() {
-    li.addClass.add("delete");
-  }
-  // 4. Reordering the items:
+  // Adding delete functionality to the delete button
+  crossOutButton.on("click", function () {
+    li.remove();
+  });
+
+  // Reordering the items
   $("#list").sortable();
 }
 
